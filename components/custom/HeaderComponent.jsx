@@ -4,14 +4,19 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import { PenBox } from "lucide-react";
 import UserMenu from "./user-menu";
+import { checkUser } from "@/lib/checkUser";
+import UserLoading from "./UserLoadingComponent";
 
-function HeaderComponent() {
+async function HeaderComponent() {
+  console.log('header');
+  
+  await checkUser()
   return (
     <header className="container mx-auto">
       <nav className="py-6 px-4 flex justify-between items-center">
         <Link href="/">
           <Image
-            src={"/logo2.png"}
+            // src={"/logo2.png"}
             alt="Jira Logo"
             width={200}
             height={56}
@@ -38,6 +43,7 @@ function HeaderComponent() {
           </SignedIn>
         </div>
       </nav>
+      <UserLoading />
     </header>
   );
 }
